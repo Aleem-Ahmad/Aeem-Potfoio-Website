@@ -32,7 +32,11 @@
       overflow-y: scroll;
       scroll-behavior: smooth;
       height: 100%;
+      /* Hide scrollbar — Firefox */
+      scrollbar-width: none;
     }
+    /* Hide scrollbar — Chrome / Safari / Edge */
+    html::-webkit-scrollbar { display: none; }
 
     body {
       background: var(--bg);
