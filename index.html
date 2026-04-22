@@ -4,7 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Aleem Ahmad Ghias — Portfolio</title>
+  <link rel="icon" type="image/jpeg" href="assets/gitooogoo.jpeg"/>
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
   <style>
     :root {
       --bg: #0a0a0f;
@@ -21,7 +24,10 @@
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    html { scroll-behavior: smooth; }
+    html { 
+      scroll-behavior: smooth; 
+      scroll-snap-type: y mandatory; 
+    }
 
     body {
       background: var(--bg);
@@ -114,18 +120,51 @@
     section {
       position: relative;
       z-index: 2;
-      max-width: 1100px;
+      max-width: 1200px;
       margin: 0 auto;
       padding: 6rem 2rem;
-    }
-
-    /* ── HERO ── */
-    #hero {
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
+      scroll-snap-align: start;
+    }
+
+    /* ── HERO ── */
+    #hero {
       padding-top: 8rem;
+      display: grid;
+      grid-template-columns: 1fr 400px;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .hero-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .hero-image-container {
+      position: relative;
+      animation: fadeUp 1s 0.2s ease both;
+    }
+
+    .hero-image {
+      width: 100%;
+      aspect-ratio: 1;
+      border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+      background: var(--surface);
+      border: 2px solid var(--orange);
+      object-fit: cover;
+      padding: 10px;
+      animation: morph 8s ease-in-out infinite, float 6s ease-in-out infinite;
+      box-shadow: 0 0 50px var(--orange-glow);
+    }
+
+    @keyframes morph {
+      0%, 100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+      50% { border-radius: 50% 50% 33% 67% / 55% 27% 73% 45%; }
     }
 
     .hero-tag {
@@ -701,6 +740,17 @@
     }
 
     /* ── RESPONSIVE ── */
+    @media (max-width: 992px) {
+      #hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding-top: 10rem;
+      }
+      .hero-content { align-items: center; }
+      .hero-image-container { order: -1; max-width: 300px; margin: 0 auto; }
+      .hero-tag { margin-inline: auto; }
+    }
+
     @media (max-width: 768px) {
       nav { padding: 1rem 1.5rem; }
       .nav-links { display: none; }
@@ -732,23 +782,28 @@
 
   <!-- HERO -->
   <section id="hero">
-    <div class="hero-tag">Available for work</div>
-    <h1 class="hero-name">
-      Aleem<br/>
-      <span class="highlight">Ahmad</span><br/>
-      Ghias
-    </h1>
-    <p class="hero-role">Full-Stack Developer · <strong>Pakistan 🇵🇰</strong></p>
-    <p class="hero-desc">
-      Building fast, beautiful, and scalable web applications. Currently crafting <strong>Servax</strong> — a home services marketplace — and diving deep into AI automation.
-    </p>
-    <div class="hero-cta">
-      <a href="#projects" class="btn-primary">View My Work</a>
-      <a href="#contact" class="btn-ghost">Get in Touch</a>
+    <div class="hero-content">
+      <div class="hero-tag">Available for work</div>
+      <h1 class="hero-name">
+        Aleem<br/>
+        <span class="highlight">Ahmad</span><br/>
+        Ghias
+      </h1>
+      <p class="hero-role">Full-Stack Developer · <strong>Pakistan 🇵🇰</strong></p>
+      <p class="hero-desc">
+        Building fast, beautiful, and scalable web applications. Currently crafting <strong>Servax</strong> — a home services marketplace — and diving deep into AI automation.
+      </p>
+      <div class="hero-cta">
+        <a href="#projects" class="btn-primary">View My Work</a>
+        <a href="#contact" class="btn-ghost">Get in Touch</a>
+      </div>
+      <div class="hero-scroll">
+        <div class="scroll-line"></div>
+        Scroll to explore
+      </div>
     </div>
-    <div class="hero-scroll">
-      <div class="scroll-line"></div>
-      Scroll to explore
+    <div class="hero-image-container">
+      <img src="assets/gitooogoo.jpeg" alt="Aleem Ahmad" class="hero-image">
     </div>
   </section>
 
@@ -799,7 +854,7 @@
     </div>
     <div class="skills-grid reveal">
       <div class="skill-group">
-        <div class="skill-group-icon">💻</div>
+        <div class="skill-group-icon text-orange"><i class="fa-solid fa-code"></i></div>
         <div class="skill-group-title">Languages</div>
         <div class="skill-tags">
           <span class="skill-tag">HTML5</span>
@@ -810,7 +865,7 @@
         </div>
       </div>
       <div class="skill-group">
-        <div class="skill-group-icon">⚙️</div>
+        <div class="skill-group-icon text-orange"><i class="fa-solid fa-layer-group"></i></div>
         <div class="skill-group-title">Frameworks & Libraries</div>
         <div class="skill-tags">
           <span class="skill-tag">React.js</span>
@@ -820,7 +875,7 @@
         </div>
       </div>
       <div class="skill-group">
-        <div class="skill-group-icon">🗄️</div>
+        <div class="skill-group-icon text-orange"><i class="fa-solid fa-database"></i></div>
         <div class="skill-group-title">Database & Tools</div>
         <div class="skill-tags">
           <span class="skill-tag">MongoDB</span>
@@ -904,23 +959,23 @@
         <p>I'm open to freelance projects, collaborations, or just a good conversation about tech. Feel free to reach out!</p>
         <div class="contact-links">
           <a href="mailto:aleemahmadghias@gmail.com" class="contact-link">
-            <div class="contact-link-icon">✉️</div>
+            <div class="contact-link-icon"><i class="fa-solid fa-envelope"></i></div>
             aleemahmadghias@gmail.com
           </a>
           <a href="https://www.linkedin.com/in/aleem-ahmad-ghias-undefined-70094a404" target="_blank" class="contact-link">
-            <div class="contact-link-icon">💼</div>
+            <div class="contact-link-icon"><i class="fa-brands fa-linkedin"></i></div>
             linkedin.com/in/aleem-ahmad-ghias
           </a>
           <a href="https://www.facebook.com/aleem.ahmed.944?mibextid=ZbWKwL" target="_blank" class="contact-link">
-            <div class="contact-link-icon">📘</div>
+            <div class="contact-link-icon"><i class="fa-brands fa-facebook"></i></div>
             facebook.com/aleem.ahmed.944
           </a>
           <a href="https://www.instagram.com/aleem.ahmad.ghias?igsh=NngyeWh4NzVwZjNo" target="_blank" class="contact-link">
-            <div class="contact-link-icon">📸</div>
+            <div class="contact-link-icon"><i class="fa-brands fa-instagram"></i></div>
             instagram.com/aleem.ahmad.ghias
           </a>
           <a href="https://www.tiktok.com/@no.nick.name1925?_t=8ji5gNGlkuN&_r=1" target="_blank" class="contact-link">
-            <div class="contact-link-icon">🎵</div>
+            <div class="contact-link-icon"><i class="fa-brands fa-tiktok"></i></div>
             tiktok.com/@no.nick.name1925
           </a>
         </div>
