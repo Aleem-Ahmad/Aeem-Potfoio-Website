@@ -31,6 +31,7 @@
       scroll-snap-type: y mandatory;
       overflow-y: scroll;
       scroll-behavior: smooth;
+      height: 100%;
     }
 
     body {
@@ -40,6 +41,7 @@
       font-size: 16px;
       line-height: 1.6;
       overflow-x: hidden;
+      height: 100%;
     }
 
     /* ─── AMBIENT BG ──────────────────────────────── */
@@ -126,6 +128,7 @@
       position: relative;
       z-index: 1;
       height: 100vh;
+      min-height: 0;           /* prevent stretch past 100vh */
       width: 100%;
       display: flex;
       align-items: center;
@@ -139,6 +142,12 @@
       width: 100%;
       max-width: 1120px;
       padding: 0 5%;
+      /* let content shrink vertically if needed */
+      max-height: calc(100vh - var(--nav-h) - 2rem);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
 
     /* ─── SECTION LABELS ───────────────────────────── */
@@ -146,12 +155,12 @@
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
-      font-size: 0.72rem;
+      font-size: clamp(0.6rem, 1vh, 0.72rem);
       font-weight: 600;
       letter-spacing: 2.5px;
       text-transform: uppercase;
       color: var(--accent);
-      margin-bottom: 1rem;
+      margin-bottom: clamp(0.4rem, 1vh, 1rem);
     }
     .eyebrow::before {
       content: '';
@@ -163,17 +172,17 @@
     .section-heading {
       font-family: 'Space Grotesk', sans-serif;
       font-weight: 700;
-      font-size: clamp(2rem, 3.5vw, 2.8rem);
+      font-size: clamp(1.5rem, 4vh, 2.8rem);
       color: var(--white);
       letter-spacing: -0.8px;
       line-height: 1.15;
-      margin-bottom: 0.6rem;
+      margin-bottom: clamp(0.3rem, 0.8vh, 0.6rem);
     }
 
     .section-sub {
       color: var(--muted);
-      font-size: 1rem;
-      margin-bottom: 2.5rem;
+      font-size: clamp(0.8rem, 1.5vh, 1rem);
+      margin-bottom: clamp(0.8rem, 2vh, 2rem);
       max-width: 500px;
     }
 
@@ -183,9 +192,10 @@
     #hero { padding-top: var(--nav-h); }
     #hero .slide-inner {
       display: grid;
-      grid-template-columns: 1fr 380px;
-      gap: 5rem;
+      grid-template-columns: 1fr 340px;
+      gap: clamp(2rem, 4vw, 5rem);
       align-items: center;
+      flex-direction: unset;
     }
 
     .hero-badge {
@@ -195,13 +205,13 @@
       background: var(--accent-soft);
       border: 1px solid rgba(255,107,53,0.2);
       color: var(--accent);
-      font-size: 0.75rem;
+      font-size: clamp(0.65rem, 1.2vh, 0.75rem);
       font-weight: 600;
       letter-spacing: 1.2px;
       text-transform: uppercase;
-      padding: 0.4rem 1rem 0.4rem 0.75rem;
+      padding: 0.35rem 0.9rem 0.35rem 0.7rem;
       border-radius: 50px;
-      margin-bottom: 1.6rem;
+      margin-bottom: clamp(0.6rem, 1.5vh, 1.6rem);
       width: fit-content;
       animation: fadeUp 0.7s 0.1s ease both;
     }
@@ -215,38 +225,38 @@
     .hero-name {
       font-family: 'Space Grotesk', sans-serif;
       font-weight: 800;
-      font-size: clamp(3.2rem, 7vw, 6rem);
+      font-size: clamp(2.2rem, 7vh, 5.5rem);
       line-height: 1.0;
-      letter-spacing: -3px;
+      letter-spacing: -2px;
       color: var(--white);
       animation: fadeUp 0.7s 0.2s ease both;
-      margin-bottom: 1rem;
+      margin-bottom: clamp(0.4rem, 1vh, 1rem);
     }
     .hero-name .ac { color: var(--accent); }
 
     .hero-role {
-      font-size: 1.05rem;
+      font-size: clamp(0.85rem, 1.6vh, 1.05rem);
       color: var(--muted);
       font-weight: 400;
       animation: fadeUp 0.7s 0.3s ease both;
-      margin-bottom: 1.3rem;
+      margin-bottom: clamp(0.5rem, 1.2vh, 1.3rem);
     }
     .hero-role strong { color: rgba(255,255,255,0.75); font-weight: 500; }
 
     .hero-desc {
       max-width: 480px;
       color: var(--muted);
-      font-size: 0.97rem;
-      line-height: 1.8;
+      font-size: clamp(0.82rem, 1.4vh, 0.97rem);
+      line-height: 1.7;
       animation: fadeUp 0.7s 0.4s ease both;
-      margin-bottom: 2.2rem;
+      margin-bottom: clamp(0.8rem, 2vh, 2.2rem);
     }
 
     .hero-actions {
       display: flex;
-      gap: 1rem;
+      gap: 0.85rem;
       animation: fadeUp 0.7s 0.5s ease both;
-      margin-bottom: 2.8rem;
+      margin-bottom: clamp(1rem, 2.5vh, 2.8rem);
     }
 
     .btn-primary {
@@ -350,28 +360,29 @@
     #about .slide-inner {
       display: grid;
       grid-template-columns: 5fr 4fr;
-      gap: 5rem;
+      gap: clamp(2rem, 4vw, 5rem);
       align-items: center;
+      flex-direction: unset;
     }
 
     .about-text p {
       color: var(--muted);
-      margin-bottom: 1.1rem;
-      font-size: 1rem;
-      line-height: 1.85;
+      margin-bottom: clamp(0.5rem, 1.2vh, 1.1rem);
+      font-size: clamp(0.82rem, 1.4vh, 1rem);
+      line-height: 1.75;
     }
     .about-text p strong { color: var(--text); font-weight: 600; }
 
     .stats-row {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 1rem;
+      gap: clamp(0.6rem, 1.2vh, 1rem);
     }
     .stat-box {
-      padding: 1.4rem;
+      padding: clamp(0.8rem, 1.8vh, 1.4rem);
       background: var(--card);
       border: 1px solid var(--border);
-      border-radius: 16px;
+      border-radius: 14px;
       transition: border-color 0.3s, transform 0.3s;
     }
     .stat-box:hover {
@@ -380,14 +391,14 @@
     }
     .stat-val {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: 2rem;
+      font-size: clamp(1.4rem, 3.5vh, 2rem);
       font-weight: 800;
       color: var(--accent);
       line-height: 1;
-      margin-bottom: 0.3rem;
+      margin-bottom: 0.25rem;
     }
     .stat-key {
-      font-size: 0.82rem;
+      font-size: clamp(0.72rem, 1.2vh, 0.82rem);
       color: var(--muted);
     }
 
@@ -397,45 +408,45 @@
     .skills-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 1.2rem;
+      gap: clamp(0.7rem, 1.5vh, 1.2rem);
     }
     .skill-card {
-      padding: 1.8rem;
+      padding: clamp(1rem, 2.5vh, 1.8rem);
       background: var(--card);
       border: 1px solid var(--border);
-      border-radius: 20px;
+      border-radius: 18px;
       position: relative;
       overflow: hidden;
       transition: border-color 0.3s, transform 0.3s;
     }
     .skill-card:hover {
       border-color: rgba(255,107,53,0.3);
-      transform: translateY(-5px);
+      transform: translateY(-4px);
     }
     .skill-card-icon {
-      font-size: 1.5rem;
+      font-size: clamp(1.1rem, 2.5vh, 1.5rem);
       color: var(--accent);
-      margin-bottom: 1rem;
+      margin-bottom: clamp(0.5rem, 1.2vh, 1rem);
       display: block;
     }
     .skill-card-title {
       font-family: 'Space Grotesk', sans-serif;
       font-weight: 600;
-      font-size: 0.95rem;
+      font-size: clamp(0.82rem, 1.5vh, 0.95rem);
       color: var(--white);
-      margin-bottom: 1rem;
+      margin-bottom: clamp(0.5rem, 1.2vh, 1rem);
     }
     .tags {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.45rem;
+      gap: 0.4rem;
     }
     .tag {
       background: var(--accent-soft);
       color: rgba(255,255,255,0.6);
-      font-size: 0.75rem;
+      font-size: clamp(0.68rem, 1.1vh, 0.75rem);
       font-weight: 500;
-      padding: 0.28rem 0.7rem;
+      padding: 0.22rem 0.6rem;
       border-radius: 6px;
       transition: background 0.2s, color 0.2s;
     }
@@ -450,20 +461,20 @@
     .projects-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 1.2rem;
+      gap: clamp(0.7rem, 1.5vh, 1.2rem);
     }
 
     .project-card {
       background: var(--card);
       border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 2rem;
+      border-radius: 18px;
+      padding: clamp(1rem, 2.5vh, 2rem);
       position: relative;
       overflow: hidden;
       transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
       display: flex;
       flex-direction: column;
-      gap: 0.75rem;
+      gap: clamp(0.4rem, 1vh, 0.75rem);
       cursor: pointer;
     }
     .project-card::before {
@@ -512,14 +523,14 @@
     .proj-title {
       font-family: 'Space Grotesk', sans-serif;
       font-weight: 700;
-      font-size: 1.25rem;
+      font-size: clamp(0.95rem, 2.2vh, 1.25rem);
       color: var(--white);
       letter-spacing: -0.3px;
     }
     .proj-desc {
-      font-size: 0.88rem;
+      font-size: clamp(0.75rem, 1.3vh, 0.88rem);
       color: var(--muted);
-      line-height: 1.7;
+      line-height: 1.65;
     }
     .proj-stack {
       display: flex;
